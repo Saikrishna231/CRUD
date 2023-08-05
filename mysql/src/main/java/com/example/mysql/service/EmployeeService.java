@@ -17,49 +17,49 @@ public class EmployeeService {
     public List<Employee>  getallemps() {
         return employeeRepository.findAll();
     }
-    public void createemployee(Employee e) {
-        employeeRepository.save(e);
 
+    public Employee getEmployeeById(Integer id) {
+       return employeeRepository.findById(id).orElse(null);
+   }
+
+
+    public Employee createemployee(Employee employee) {
+         return employeeRepository.save(employee);
     }
 
-//    public EmployeeService(EmployeeRepository employeeRepository) {
-//        this.employeeRepository = employeeRepository;
+//    public Employee createemployee(Employee employee) {
+//        return employeeRepository.save(new Employee(employee.getEmail(),employee.getName()));
 //    }
 
-//    public List<Employee> getAllEmployees() {
-//        return employeeRepository.findAll();
-//    }
-
-
-
-//    public Iterable<Employee> findAll() {
-//        return null;
-//    }
-
-
-//    public List<Employee> getAllEmployees(){
-//        List<Employee> employees = new ArrayList<Employee>();
-//        employeeRepository.findAll().forEach(employees::add);
+    public Employee updateEmployee(int id,Employee employee){
 //
-//        return employees;
-//    }
+        Employee emp = employeeRepository.findById(id).get();
+        emp.setName(employee.getName());
+        emp.setEmail(employee.getEmail());
+        return employeeRepository.save(emp);
+    }
+
+    public void deleteAllEmployees() {
+        employeeRepository.deleteAll();
+    }
+
+    public void deleteEmployeeById(Integer id) {
+        employeeRepository.deleteById(id);
+    }
+
+
+
+//    public Employee updateEmployee(Employee employee) {
+//        return employeeRepository.save(new Employee(employee.getId(), employee.getEmail(), employee.getName()));
 //
-//    public EmployeeService(EmployeeRepository employeeRepository) {
-//        this.employeeRepository = employeeRepository;
 //    }
-////    public List<Employee> getAllEmployees() {
-////        return employeeRepository.findAll();
-////    }
-////    public Employee getEmployeeById(int id) {
-////        return employeeRepository.findById(id).orElse(null);
-////    }
-//
-//    public Optional<Employee> getEmployeeById(int id) {
-//        return employeeRepository.findById(id);
-//    }
-//
-//    public Employee addEmployee(Employee employee) {
-//        // You can add additional business logic here before saving the employee
-//        return employeeRepository.save(employee);
-//    }
+
+
+
+
+
+
+
+
+
 }
